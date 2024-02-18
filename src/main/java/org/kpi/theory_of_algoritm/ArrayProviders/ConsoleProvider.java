@@ -26,7 +26,7 @@ public class ConsoleProvider implements ArrayProvider {
             try {
                 list.add(Float.parseFloat(consoleScanner.nextLine()));
             } catch (NumberFormatException e) {
-                throw new ArrayProviderException("You entered wrong elements");
+                throw new ArrayProviderException("Requiremets mismatch! Check if the array elemets are correct, only numbers are allowed.");
             }
         }
 
