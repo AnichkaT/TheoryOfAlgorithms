@@ -66,7 +66,7 @@ public class Main {
     private static int getSize() throws MenuException {
         Scanner consoleScanner = new Scanner(System.in);
         System.out.print("Input amount of element in array ");
-        String amount = consoleScanner.nextLine();
+        String length = consoleScanner.nextLine();
 
         try {
             return Integer.parseInt(amount);
