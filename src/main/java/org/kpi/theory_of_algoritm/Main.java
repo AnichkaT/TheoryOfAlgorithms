@@ -13,6 +13,8 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
         Scanner consoleScanner = new Scanner(System.in);
+
+        //Start of the program
         System.out.println("__________________________________________________");
         System.out.println("There are 3 options for you to present an array. You can select only one!");
         System.out.println("To generate array elements - print 1");
@@ -23,6 +25,9 @@ public class Main {
         System.out.println("__________________________________________________");
 
         try {
+             /*The algorithm of getting an array based on a data from the input
+            and all the processes occurred in side files after choice was made
+             */
             ArrayProvider provider = getArrayProvider(choice);
             List<Float> array = provider.getArray();
             outputArray(array);
@@ -42,6 +47,8 @@ public class Main {
     }
 
     private static void outputArray(List<Float> array) {
+
+        //Output the array
         System.out.println("__________________________________________________");
         System.out.println("Your array: ");
         System.out.println(array);
@@ -65,12 +72,15 @@ public class Main {
                 amount++;
             }
         }
+        //Showing final results
         System.out.println("__________________________________________________");
         System.out.println("The amount of elements array bigger than entered number is " + amount);
     }
 
     private static int getSize() throws MenuException {
         Scanner consoleScanner = new Scanner(System.in);
+
+        //input array size
         System.out.print("Input amount of element in array: ");
 
         try {
@@ -83,6 +93,8 @@ public class Main {
 
     private static String getFilePath() {
         Scanner consoleScanner = new Scanner(System.in);
+
+        //input the file path
         System.out.print("Input file path (for example C:\\Users\\<User's name>\\Desktop\\Array.txt)");
         return consoleScanner.nextLine();
     }

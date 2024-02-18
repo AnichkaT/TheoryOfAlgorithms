@@ -18,15 +18,20 @@ public class FileProvider implements ArrayProvider {
         this.filePath = filePath;
     }
 
-
     @Override
     public List<Float> getArray() throws ArrayProviderException {
         try (BufferedReader reader = new BufferedReader(new FileReader(this.filePath))) {
             String line = reader.readLine();
+
+            //Throwing an error if the file is blank
             if (line == null) {
                 throw new ArrayProviderException("Problem with reading file. Check your file is not empty!");
             }
 
+            /*
+            Throwing an error if the file isn't blank but its content
+            doesn't meet the requirements
+             */
             ArrayList<Float> list = getFloats(line.split(" "));
 
             if (reader.readLine() != null) {
@@ -47,6 +52,8 @@ public class FileProvider implements ArrayProvider {
             try {
                 list.add(Float.parseFloat(string));
             } catch (NumberFormatException e) {
+
+                //Throwing an error in case the elements aren't numbers
                 throw new ArrayProviderException("Check your file content!Make sure it is a numbers.");
             }
         }
