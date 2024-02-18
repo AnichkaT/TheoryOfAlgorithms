@@ -13,12 +13,14 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
         Scanner consoleScanner = new Scanner(System.in);
-        System.out.println("Generate array elements - 1");
-        System.out.println("Enter the array by yourself - 2");
-        System.out.println("Read from file - 3 ");
-        System.out.print("Input how you want entered array ");
+        System.out.println("__________________________________________________");
+        System.out.println("There are 3 options for you to present an array. You can select only one!");
+        System.out.println("To generate array elements - print 1");
+        System.out.println("To enter the array by yourself - print 2");
+        System.out.println("To read from file - print 3 ");
+        System.out.print("Enter your type of input: ");
         String choice = consoleScanner.nextLine();
-        System.out.println("_______________________");
+        System.out.println("__________________________________________________");
 
         try {
             ArrayProvider provider = getArrayProvider(choice);
@@ -35,21 +37,24 @@ public class Main {
             case "1" -> new Randomizer(getSize());
             case "2" -> new ConsoleProvider(getSize());
             case "3" -> new FileProvider(getFilePath());
-            default -> throw new MenuException("You entered wrong menu option");
+            default -> throw new MenuException("You have entered the wrong menu option! Choose either 1, 2 or 3.");
         };
     }
 
     private static void outputArray(List<Float> array) {
+        System.out.println("__________________________________________________");
+        System.out.println("Your array: ");
         System.out.println(array);
+        System.out.println("__________________________________________________");
     }
 
     private static float getValueToCompare() throws MenuException {
         Scanner consoleScanner = new Scanner(System.in);
-        System.out.print("Enter a value to compare ");
+        System.out.print("Enter a value to compare: ");
         try {
             return Float.parseFloat(consoleScanner.nextLine());
         } catch (NumberFormatException e) {
-            throw new MenuException("You entered wrong value");
+            throw new MenuException("Entered value doesn't match the requirements. Make sure your input is a number.");
         }
     }
 
@@ -60,25 +65,25 @@ public class Main {
                 amount++;
             }
         }
+        System.out.println("__________________________________________________");
         System.out.println("The amount of elements array bigger than entered number is " + amount);
     }
 
     private static int getSize() throws MenuException {
         Scanner consoleScanner = new Scanner(System.in);
-        System.out.print("Input amount of element in array ");
-        String amount = consoleScanner.nextLine();
+        System.out.print("Input amount of element in array: ");
 
         try {
-            return Integer.parseInt(amount);
+            return Integer.parseInt(consoleScanner.nextLine());
         } catch (NumberFormatException e) {
-            throw new MenuException("You entered wrong elements value");
+            throw new MenuException("You entered wrong elements value!");
         }
 
     }
 
     private static String getFilePath() {
         Scanner consoleScanner = new Scanner(System.in);
-        System.out.print("Input file path (C:\\Users\\Anna\\Desktop\\Array.txt ) ");
+        System.out.print("Input file path (for example C:\\Users\\<User's name>\\Desktop\\Array.txt)");
         return consoleScanner.nextLine();
     }
 
