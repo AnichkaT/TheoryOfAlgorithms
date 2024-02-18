@@ -17,7 +17,7 @@ public class Main {
         //Start of the program
         System.out.println("__________________________________________________");
         System.out.println("There are 3 options for you to present an array. You can select only one!");
-        System.out.println("To generate array elements - print 1");
+        System.out.println("To generate array elements and write to file - print 1");
         System.out.println("To enter the array by yourself - print 2");
         System.out.println("To read from file - print 3 ");
         System.out.print("Enter your type of input: ");
@@ -39,7 +39,7 @@ public class Main {
 
     private static ArrayProvider getArrayProvider(String choice) throws MenuException {
         return switch (choice) {
-            case "1" -> new Randomizer(getSize());
+            case "1" -> new Randomizer(getSize(), getFilePath());
             case "2" -> new ConsoleProvider(getSize());
             case "3" -> new FileProvider(getFilePath());
             default -> throw new MenuException("You have entered the wrong menu option! Choose either 1, 2 or 3.");
@@ -95,7 +95,7 @@ public class Main {
         Scanner consoleScanner = new Scanner(System.in);
 
         //input the file path
-        System.out.print("Input file path (for example C:\\Users\\<User's name>\\Desktop\\Array.txt)");
+        System.out.print("Input file path (for example: Example.txt or full path)");
         return consoleScanner.nextLine();
     }
 
